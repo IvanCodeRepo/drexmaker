@@ -40,6 +40,14 @@ function togglePreview() {
     toggleSubmitButton();
 }
 
+document.getElementById('textInput').addEventListener('change', () => {
+    togglePreview();
+});
+
+document.getElementById('textInput').addEventListener('keyup', () => {
+    togglePreview();
+});
+
 document.getElementById('previewBtn').addEventListener('click', () => {
     const textInputValue = document.getElementById('textInput').value;
     try {
