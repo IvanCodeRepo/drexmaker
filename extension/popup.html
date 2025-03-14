@@ -1,60 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Twitter Auto Writer</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-    body {
-      width: 300px;
-      padding: 10px;
-      background-color: #e1e8fc;
-      color: #0b2887;
-      font-family: 'Roboto', sans-serif;
-    }
-    textarea {
-      width: 100%;
-      height: 150px;
-    }
-    button {
-      width: 100%;
-      padding: 12px 16px;
-      background-color: #0b2887;
-      color: #deff00;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-      text-align: center;
-      outline: none;
-      border: 1px solid #deff00;
-      box-shadow: 0 0 5px rgba(222, 255, 0, 0.7);
-    }
-    button:hover {
-        background-color: #1035ad;
-    }
-    button:active {
-        transform: scale(0.98);
-    }
-    button:focus {
-        box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.5);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Twitter Auto Writer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            width: 300px;
+            padding: 10px;
+            background-color: #e1e8fc;
+            color: #0b2887;
+            font-family: 'Roboto', sans-serif;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+        button {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: #0b2887;
+            color: #deff00;
+            border: 1px solid #deff00;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+            outline: none;
+            box-shadow: 0 0 5px rgba(222, 255, 0, 0.7);
+        }
+        button:disabled {
+            background-color: #b0b0b0;
+            color: #d0d0d0;
+            border: 1px solid #d0d0d0;
+            cursor: not-allowed;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        button:not(:disabled):hover {
+            background-color: #1035ad;
+        }
+        button:not(:disabled):active {
+            transform: scale(0.98);
+        }
+        button:not(:disabled):focus {
+            box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.5);
+        }
+    </style>
 </head>
 <body>
-  <h3>Write your tweets in:</h3>
-  <ul>
-    <li>JSON format: <br><code>["Tweet 1", "Tweet 2", "Tweet 3"]</code></li>
-    <li>Comma separated, and each tweet between double quotes: <br><code>"Tweet 1", "Tweet 2", "Tweet 3"</code></li>
-    <li>A tweet in each line: <br><code>"Tweet 1"<br>"Tweet 2"<br>"Tweet 3"</code></li>
-    <li>Full text. Let us break your tweet into multiple tweets.</li>
-  </ul>
-  <textarea id="textInput" placeholder='Your favourite tweets...'></textarea>
-  <button id="submitBtn">Write thread</button>
+    <h3>Write your tweets in:</h3>
 
-  <script src="script.js"></script>
-  <script src="popup.js"></script>
+    <ul>
+        <li>
+            JSON format: <br>
+            <code>["Tweet 1", "Tweet 2", "Tweet 3"]</code>
+        </li>
+        <li>
+            Comma separated, and each tweet between double quotes: <br>
+            <code>"Tweet 1", "Tweet 2", "Tweet 3"</code>
+        </li>
+        <li>
+            A tweet in each line: <br>
+            <code>"Tweet 1"<br>"Tweet 2"<br>"Tweet 3"</code>
+        </li>
+        <li>
+            Full text. Let us break your tweet into multiple tweets.
+        </li>
+    </ul>
+
+    <textarea id="textInput" placeholder='Your favourite tweets...' onchange="togglePreview()" onkeyup="togglePreview()"></textarea>
+
+    <button id="previewBtn" disabled>Preview</button>
+
+    <ul id="previewTweets"></ul>
+
+    <button id="submitBtn" disabled>Write thread</button>
+
+    <script src="script.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>
